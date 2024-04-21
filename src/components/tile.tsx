@@ -9,25 +9,25 @@ interface TileProps {
 }
 
 const Tile = ({ item }: TileProps) => {
-  const [showInfo, setShowInfo] = useState(false);
-  const transRef = useSpringRef();
-  const transitions = useTransition(showInfo, {
-    keys: null,
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: { duration: 250 },
-  });
+  // const [showInfo, setShowInfo] = useState(false);
+  // const transRef = useSpringRef();
+  // const transitions = useTransition(showInfo, {
+  //   keys: null,
+  //   from: { opacity: 0 },
+  //   enter: { opacity: 1 },
+  //   leave: { opacity: 0 },
+  //   config: { duration: 250 },
+  // });
 
-  useEffect(() => {
-    transRef.start();
-  }, [showInfo, transRef]);
+  // useEffect(() => {
+  //   transRef.start();
+  // }, [showInfo, transRef]);
 
   return (
     <Box
       cursor={"pointer"}
-      onMouseEnter={() => setShowInfo(true)}
-      onMouseLeave={() => setShowInfo(false)}
+      // onMouseEnter={() => setShowInfo(true)}
+      // onMouseLeave={() => setShowInfo(false)}
       minWidth={"160px"}
       minHeight={"240px"}
       borderRadius={5}
@@ -42,7 +42,27 @@ const Tile = ({ item }: TileProps) => {
         />
       </AspectRatio>
 
-      {transitions((style, state) => {
+      <Stack
+        borderRadius={5}
+        bgGradient="linear(to-b, transparent, gray.900)"
+        zIndex={2}
+        // position={"static"}
+        top={0}
+        // minHeight={"100%"}
+        maxWidth={"100%"}
+        paddingX={2}
+        paddingY={5}
+        flexDirection={"column-reverse"}
+      >
+        <Text fontSize="xs" noOfLines={3}>
+          {item.description || "Description"}
+        </Text>
+        <Heading noOfLines={1} size="sm">
+          {item.title || "Title"}
+        </Heading>
+      </Stack>
+
+      {/* {transitions((style, state) => {
         return (
           <animated.div style={style}>
             {state && (
@@ -66,7 +86,7 @@ const Tile = ({ item }: TileProps) => {
             )}
           </animated.div>
         );
-      })}
+      })} */}
     </Box>
   );
 };
