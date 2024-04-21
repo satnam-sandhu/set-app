@@ -2,8 +2,13 @@ import { useState, useEffect } from "react";
 import { Box, Image } from "@chakra-ui/react";
 import { useTransition, animated, useSpringRef } from "@react-spring/web";
 import Carousel from "./carousel";
+import { Movie } from "../types/movies";
 
-const Banner = ({ data }) => {
+interface BannerProps {
+  data: Movie[];
+}
+
+const Banner = ({ data }: BannerProps) => {
   const [index, setIndex] = useState(0);
   const transRef = useSpringRef();
   const transitions = useTransition(index, {
@@ -21,9 +26,11 @@ const Banner = ({ data }) => {
 
   return (
     <>
-      <Carousel setIndex={(index) => setIndex(index)}>
-        {data.map((movie: any, index: number) => (
-          <Box key={index} width={"100vw"} height={"75vh"}></Box>
+      <Carousel setIndex={(index: number) => setIndex(index)}>
+        {data.map((movie: Movie, index: number) => (
+          <Box key={index} width={"100vw"} height={"75vh"}>
+            {movie.title}
+          </Box>
         ))}
       </Carousel>
       <Box position={"absolute"} top={0} zIndex={-10}>

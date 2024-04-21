@@ -1,7 +1,12 @@
 import { Flex, Box, Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-const Carousel = ({ children, setIndex }) => {
+interface CarouselProps {
+  children: JSX.Element[];
+  setIndex?: (index: number) => void;
+}
+
+const Carousel = ({ children, setIndex }: CarouselProps) => {
   const [cursour, setCoursor] = useState(0);
 
   useEffect(() => {

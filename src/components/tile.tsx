@@ -2,8 +2,13 @@ import { useState, useEffect } from "react";
 import { AspectRatio, Box, Heading, Stack, Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { useTransition, animated, useSpringRef } from "@react-spring/web";
+import { Movie } from "../types/movies";
 
-const Tile = ({ item }) => {
+interface TileProps {
+  item: Movie;
+}
+
+const Tile = ({ item }: TileProps) => {
   const [showInfo, setShowInfo] = useState(false);
   const transRef = useSpringRef();
   const transitions = useTransition(showInfo, {
